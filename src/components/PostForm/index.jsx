@@ -15,10 +15,10 @@ function PostForm() {
 
     const newPost = new FormData()
     newPost.append("post_text", inputValue)
-    newPost.append("post_imageUrl", imageName)
+    newPost.append("post_imageName", imageName)
     newPost.append(
       "post_imageFile",
-      document.getElementById("createPost-post_imageFile").files[0]
+      document.getElementById("post_imageFile").files[0]
     )
 
     console.log(newPost)
@@ -55,11 +55,11 @@ function PostForm() {
         }
         console.log(error.config)
       })
-    //document.location.reload()
+    // document.location.reload()
   }
 
   const imageChoosedOnInput = (e) => {
-    setImageName(e.target.value)
+    setImageName(document.getElementById("post_imageFile").files[0].name)
   }
 
   return (
@@ -73,15 +73,15 @@ function PostForm() {
         type="text"
         size="220"
         placeholder="Contenu du post"
-        id="createPost-post_text"
+        id="post_text"
         name="post_text"
         onChange={onInputChange}
         value={inputValue}
       />
       <input
         type="file"
-        id="createPost-post_imageFile"
-        name="createPost-post_imageFile"
+        id="post_imageFile"
+        name="post_imageFile"
         onInput={imageChoosedOnInput}
       />
       <div>{imageName}</div>
