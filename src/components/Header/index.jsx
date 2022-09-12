@@ -4,8 +4,8 @@ function Header() {
   return (
     <div>
       <Link to="/">Accueil</Link>
-      <Link to="/authentification">Authentification</Link>
-      <Link to="/wall">Wall</Link>
+      <Link to="/authentification"> /////Authentification</Link>
+      <Link to="/feed"> /////Fil d'actualités</Link>
     </div>
   )
 }

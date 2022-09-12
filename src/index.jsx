@@ -8,7 +8,7 @@ import Error from "./components/Error"
 
 import Home from "./pages/Home"
 import Authentification from "./pages/Authentification"
-import Wall from "./pages/Wall"
+import Feed from "./pages/Feed"
 
 ReactDOM.render(
   <React.StrictMode>
@@ -21,8 +21,8 @@ ReactDOM.render(
         <Route path="/authentification">
           <Authentification />
         </Route>
-        <Route path="/wall">
-          <Wall />
+        <Route path="/feed">
+          <Feed />
         </Route>
         <Route path="*">
           <Error />

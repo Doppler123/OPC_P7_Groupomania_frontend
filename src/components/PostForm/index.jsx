@@ -21,8 +21,6 @@ function PostForm() {
       document.getElementById("post_imageFile").files[0]
     )
 
-    console.log(newPost)
-
     axios.defaults.headers.post["Content-Type"] = "application/json"
     axios.defaults.timeout = 6000
     axios.defaults.withCredentials = true
