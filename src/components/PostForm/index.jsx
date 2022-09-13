@@ -53,7 +53,7 @@ function PostForm() {
         }
         console.log(error.config)
       })
-    // document.location.reload()
+    document.location.reload()
   }
 
   const imageChoosedOnInput = (e) => {

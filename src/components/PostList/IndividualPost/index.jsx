@@ -1,8 +1,9 @@
-import Author from "../Author"
-import Text from "../Text"
-import Image from "../Image"
-import Time from "../Time"
-import PostNumber from "../PostNumber"
+import Author from "../../Author"
+import Time from "../../Time"
+import Text from "./Text"
+import Image from "./Image"
+import PostNumber from "./PostNumber"
+import InteractionButtons from "./InteractionButtons"
 
 // import dayjs from "dayjs"
 
@@ -28,6 +29,7 @@ const Post = ({ post }) => {
         <Text text={post_text} />
         <Image imageUrl={post_imagePath} imageName={post_imageName} />
         <PostNumber postNumber={post_id} />
+        <InteractionButtons postId={post_id} />
         <p></p>
       </div>
     </>
