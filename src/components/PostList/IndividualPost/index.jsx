@@ -1,13 +1,13 @@
 import Author from "../../Author"
 import Time from "../../Time"
-import Text from "./Text"
+import Text from "../../Text"
 import Image from "./Image"
 import PostNumber from "./PostNumber"
 import InteractionButtons from "./InteractionButtons"
+import CommentsList from "../../CommentsList"
+import CommentForm from "../../CommentForm"
 
-// import dayjs from "dayjs"
-
-const Post = ({ post }) => {
+const IndividualPost = ({ post }) => {
   const {
     post_time,
     post_text,
@@ -22,18 +22,20 @@ const Post = ({ post }) => {
       <div>
         <div>
           <div>
-            par : <Author author={user_email} />
-            le : <Time timestamp={post_time} />
+            <Author author={user_email} />
+            <Time timestamp={post_time} />
           </div>
         </div>
         <Text text={post_text} />
         <Image imageUrl={post_imagePath} imageName={post_imageName} />
         <PostNumber postNumber={post_id} />
         <InteractionButtons postId={post_id} />
+        <CommentsList postId={post_id} />
+        <CommentForm postId={post_id} />
         <p></p>
       </div>
     </>
   )
 }
 
-export default Post
+export default IndividualPost

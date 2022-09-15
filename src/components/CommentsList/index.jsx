@@ -1,19 +1,19 @@
 import { useState, useEffect } from "react"
 import axios from "axios"
 
-import IndividualPost from "./IndividualPost"
+import IndividualComment from "./IndividualComment"
 
-function PostList() {
-  const [postData, setPostData] = useState([])
+function CommentsList({ postId }) {
+  const [commentData, setCommentData] = useState([])
 
   useEffect(() => {
     axios.defaults.headers.post["Content-Type"] = "application/json"
     axios.defaults.timeout = 6000
     axios.defaults.withCredentials = true
     axios
-      .get("http://localhost:8000/api/posts/")
+      .get("http://localhost:8000/api/comments/" + postId)
       .then((response) => {
-        setPostData(response.data)
+        setCommentData(response.data)
       })
       .catch((error) => {
         if (error.response) {
@@ -31,11 +31,11 @@ function PostList() {
 
   return (
     <div>
-      {postData.map((post) => {
-        return <IndividualPost post={post} key={post.post_id} />
+      {commentData.map((comment) => {
+        return <IndividualComment comment={comment} key={comment.comment_id} />
       })}
     </div>
   )
 }
 
-export default PostList
+export default CommentsList

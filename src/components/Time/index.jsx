@@ -1,7 +1,11 @@
+const dayjs = require("dayjs")
+
 const Time = ({ timestamp }) => {
-  var time = new Date(timestamp)
-  console.log(time)
-  return <div>{timestamp}</div>
+  var formatedTimestampDate = dayjs(timestamp).format("DD/MM/YYYY")
+  var formatedTimestampHour = dayjs(timestamp).format("HH:mm")
+  return (
+    <div>{"le " + formatedTimestampDate + " à " + formatedTimestampHour}</div>
+  )
 }
 
 export default Time

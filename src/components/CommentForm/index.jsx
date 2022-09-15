@@ -2,31 +2,27 @@ import { useState } from "react"
 import Button from "./Button"
 import axios from "axios"
 
-function PostForm() {
+function CommentForm({ postId }) {
   const [inputValue, setInputValue] = useState("")
-  const [imageName, setImageName] = useState("")
-
-  const onInputChange = (event) => {
-    setInputValue(event.target.value)
-  }
 
   const onFormSubmit = (event) => {
     event.preventDefault() // to prevent refreshing the page every time we submit message
 
-    const newPost = new FormData()
-    newPost.append("post_text", inputValue)
-    newPost.append("post_imageName", imageName)
-    newPost.append(
-      "post_imageFile",
-      document.getElementById("post_imageFile").files[0]
-    )
+    const newComment = {
+      user_id: JSON.parse(localStorage.getItem("userData")).user_id,
+      postId: postId,
+      comment_text: inputValue,
+    }
 
     axios.defaults.headers.post["Content-Type"] = "application/json"
     axios.defaults.timeout = 6000
     axios.defaults.withCredentials = true
 
     axios
-      .post("http://localhost:8000/api/posts/", newPost)
+      .post(
+        "http://localhost:8000/api/comments/" + newComment.postId,
+        newComment
+      )
       .then((response) => {
         console.log(response)
       })
@@ -45,36 +41,23 @@ function PostForm() {
     // document.location.reload()
   }
 
-  const imageChoosedOnInput = (e) => {
-    setImageName(document.getElementById("post_imageFile").files[0].name)
+  const onInputChange = (event) => {
+    setInputValue(event.target.value)
   }
 
   return (
-    <form
-      onSubmit={onFormSubmit}
-      method="POST"
-      action="/api/posts"
-      encType="multipart/form-data"
-    >
+    <form onSubmit={onFormSubmit}>
       <input
         type="text"
         size="220"
-        placeholder="Contenu du post"
-        id="post_text"
-        name="post_text"
+        placeholder="Contenu du commentaire"
+        id="comment_text"
         onChange={onInputChange}
         value={inputValue}
       />
-      <input
-        type="file"
-        id="post_imageFile"
-        name="post_imageFile"
-        onInput={imageChoosedOnInput}
-      />
-      <div>{imageName}</div>
       <Button name="Publier" />
     </form>
   )
 }
 
-export default PostForm
+export default CommentForm

@@ -1,5 +1,5 @@
 const Author = ({ author }) => {
-  return <div>{author}</div>
+  return <div>{"par: " + author}</div>
 }
 
 export default Author
