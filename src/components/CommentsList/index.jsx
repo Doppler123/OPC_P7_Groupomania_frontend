@@ -27,10 +27,14 @@ function CommentsList({ postId }) {
         }
         console.log(error.config)
       })
-  }, [])
+  }, [postId])
 
   return (
     <div>
+      <p>
+        Il y a {commentData.length}
+        {commentData.length > 1 ? " commentaires:" : " commentaire"}
+      </p>
       {commentData.map((comment) => {
         return <IndividualComment comment={comment} key={comment.comment_id} />
       })}

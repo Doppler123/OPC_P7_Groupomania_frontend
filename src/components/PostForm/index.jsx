@@ -1,5 +1,5 @@
 import { useState } from "react"
-import Button from "./Button"
+import Button from "../Button"
 import axios from "axios"
 
 function PostForm() {
@@ -50,30 +50,34 @@ function PostForm() {
   }
 
   return (
-    <form
-      onSubmit={onFormSubmit}
-      method="POST"
-      action="/api/posts"
-      encType="multipart/form-data"
-    >
-      <input
-        type="text"
-        size="220"
-        placeholder="Contenu du post"
-        id="post_text"
-        name="post_text"
-        onChange={onInputChange}
-        value={inputValue}
-      />
-      <input
-        type="file"
-        id="post_imageFile"
-        name="post_imageFile"
-        onInput={imageChoosedOnInput}
-      />
-      <div>{imageName}</div>
-      <Button name="Publier" />
-    </form>
+    <div>
+      <hr />
+      <form
+        onSubmit={onFormSubmit}
+        method="POST"
+        action="/api/posts"
+        encType="multipart/form-data"
+      >
+        <input
+          type="text"
+          size="220"
+          placeholder="Contenu du post"
+          id="post_text"
+          name="post_text"
+          onChange={onInputChange}
+          value={inputValue}
+        />
+        <input
+          type="file"
+          id="post_imageFile"
+          name="post_imageFile"
+          onInput={imageChoosedOnInput}
+        />
+        <div>{imageName}</div>
+        <Button name="Publier" />
+      </form>
+      <hr />
+    </div>
   )
 }
 

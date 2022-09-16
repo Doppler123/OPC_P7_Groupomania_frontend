@@ -5,8 +5,8 @@ function Feed() {
   return (
     <div>
       <p>Bienvenue sur votre fil d'actualités</p>
-      <PostList />
       <PostForm />
+      <PostList />
     </div>
   )
 }

@@ -1,5 +1,5 @@
 import { useState } from "react"
-import Button from "./Button"
+import Button from "../Button"
 import axios from "axios"
 
 function CommentForm({ postId }) {
@@ -46,17 +46,21 @@ function CommentForm({ postId }) {
   }
 
   return (
-    <form onSubmit={onFormSubmit}>
-      <input
-        type="text"
-        size="220"
-        placeholder="Contenu du commentaire"
-        id="comment_text"
-        onChange={onInputChange}
-        value={inputValue}
-      />
-      <Button name="Publier" />
-    </form>
+    <div>
+      <hr />
+      <p>Poster un commentaire :</p>
+      <form onSubmit={onFormSubmit}>
+        <input
+          type="text"
+          size="220"
+          placeholder="Contenu du commentaire"
+          id="comment_text"
+          onChange={onInputChange}
+          value={inputValue}
+        />
+        <Button name="Publier" />
+      </form>
+    </div>
   )
 }
 

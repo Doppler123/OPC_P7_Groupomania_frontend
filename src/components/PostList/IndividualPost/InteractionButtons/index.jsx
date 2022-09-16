@@ -4,9 +4,13 @@ import axios from "axios"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCommentAlt, faThumbsUp } from "@fortawesome/free-solid-svg-icons"
 
+import CommentsList from "../../../CommentsList"
+import CommentForm from "../../../CommentForm"
+
 const InteractionButtons = ({ postId }) => {
   const [likeNumbers, setLikeNumbers] = useState(0)
   const [isPostLiked, setIsPostLiked] = useState(false)
+  const [isShown, setIsShown] = useState(false)
 
   const likeHandle = async () => {
     const data = {
@@ -17,7 +21,6 @@ const InteractionButtons = ({ postId }) => {
     axios.defaults.headers.post["Content-Type"] = "application/json"
     axios.defaults.timeout = 6000
     axios.defaults.withCredentials = true
-
     axios
       .patch("http://localhost:8000/api/posts/:id/likeInteractions", data)
       .then((response) => {
@@ -35,7 +38,6 @@ const InteractionButtons = ({ postId }) => {
         }
         console.log(error.config)
       })
-    document.location.reload()
   }
 
   useEffect(() => {
@@ -93,13 +95,17 @@ const InteractionButtons = ({ postId }) => {
       })
   }, [postId])
 
+  const commentHandle = (event) => {
+    setIsShown((current) => !current)
+  }
+
   return (
     <div>
+      <hr />
       <div>
         <FontAwesomeIcon icon={faThumbsUp} color={"blue"} />
         <p>{likeNumbers}</p>
       </div>
-      <hr />
       <div>
         <button onClick={likeHandle}>
           <span>
@@ -110,12 +116,23 @@ const InteractionButtons = ({ postId }) => {
           </span>
           J'aime
         </button>
-        <button>
-          <span>
-            <FontAwesomeIcon icon={faCommentAlt} color={"gray"} />
-          </span>
-          Commenter
-        </button>
+        <div>
+          <button onClick={commentHandle}>
+            <span>
+              <FontAwesomeIcon
+                icon={faCommentAlt}
+                color={isShown ? "red" : "grey"}
+              />
+            </span>
+            Commentaires
+          </button>
+          {isShown && (
+            <div>
+              <CommentsList postId={postId} />
+              <CommentForm postId={postId} />
+            </div>
+          )}
+        </div>
       </div>
       <hr />
     </div>
