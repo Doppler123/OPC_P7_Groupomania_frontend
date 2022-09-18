@@ -52,6 +52,7 @@ function PostForm() {
   return (
     <div>
       <hr />
+      <p>Publier un nouveau post :</p>
       <form
         onSubmit={onFormSubmit}
         method="POST"
@@ -60,7 +61,7 @@ function PostForm() {
       >
         <input
           type="text"
-          size="220"
+          size="50"
           placeholder="Contenu du post"
           id="post_text"
           name="post_text"

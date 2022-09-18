@@ -52,7 +52,7 @@ function CommentForm({ postId }) {
       <form onSubmit={onFormSubmit}>
         <input
           type="text"
-          size="220"
+          size="50"
           placeholder="Contenu du commentaire"
           id="comment_text"
           onChange={onInputChange}

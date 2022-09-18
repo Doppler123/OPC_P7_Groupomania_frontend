@@ -1,13 +1,11 @@
 import Author from "../../Author"
 import Time from "../../Time"
 import Text from "../../Text"
+import DeleteButton from "../../DeleteButton"
+import ModifyButton from "../../ModifyButton"
 import Image from "./Image"
 import PostNumber from "./PostNumber"
-import InteractionButtons from "./InteractionButtons"
-import axios from "axios"
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faTrashCan } from "@fortawesome/free-solid-svg-icons"
+import LikeAndCommentButtons from "./LikeAndCommentButtons"
 
 const IndividualPost = ({ post }) => {
   const {
@@ -15,32 +13,11 @@ const IndividualPost = ({ post }) => {
     post_text,
     post_id,
     user_email,
+    user_firstName,
+    user_lastName,
     post_imagePath,
     post_imageName,
   } = post
-
-  const deletePost = () => {
-    axios.defaults.headers.post["Content-Type"] = "application/json"
-    axios.defaults.timeout = 6000
-    axios.defaults.withCredentials = true
-    axios
-      .delete("http://localhost:8000/api/posts/" + post_id)
-      .then((response) => {
-        console.log(response)
-      })
-      .catch((error) => {
-        if (error.response) {
-          console.log(error.response.data)
-          console.log(error.response.status)
-          console.log(error.response.headers)
-        } else if (error.request) {
-          console.log(error.request)
-        } else {
-          console.log("Error", error.message)
-        }
-        console.log(error.config)
-      })
-  }
 
   const emailFromLocalStorage = JSON.parse(
     localStorage.getItem("userData")
@@ -52,7 +29,11 @@ const IndividualPost = ({ post }) => {
         <div>
           <PostNumber postNumber={post_id} />
           <div>
-            <Author author={user_email} />
+            <Author
+              author_email={user_email}
+              author_firstName={user_firstName}
+              author_lastName={user_lastName}
+            />
             <Time timestamp={post_time} />
           </div>
         </div>
@@ -60,17 +41,15 @@ const IndividualPost = ({ post }) => {
         <Image imageUrl={post_imagePath} imageName={post_imageName} />
 
         {emailFromLocalStorage === user_email ? (
-          <button onClick={deletePost}>
-            <span>
-              <FontAwesomeIcon icon={faTrashCan} color={"gray"} />
-            </span>
-            Supprimer le post
-          </button>
+          <div>
+            <DeleteButton publication_id={post_id} />
+            <ModifyButton publication_id={post_id} />
+          </div>
         ) : (
           <div></div>
         )}
 
-        <InteractionButtons postId={post_id} />
+        <LikeAndCommentButtons postId={post_id} />
       </div>
     </>
   )

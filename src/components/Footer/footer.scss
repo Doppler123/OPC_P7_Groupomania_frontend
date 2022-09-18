@@ -1,0 +1,41 @@
+@import "../../utils/style/globalStyleSettings.scss";
+
+.footer{
+    width: 100%;
+    margin: auto;
+    margin-top: 80px;
+    margin-left: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color: $primary-color;
+}
+
+.footer__container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    margin-left: 12px;
+    max-width: 1440px;
+}
+
+.footer__container .boxes{
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.footer__container .boxes h4{
+    cursor: pointer;
+}
+
+.footer__container .boxes a{
+    cursor: pointer;
+    margin-bottom: 13px;
+}
+
+#assistance{
+    margin-right: 300px;
+}

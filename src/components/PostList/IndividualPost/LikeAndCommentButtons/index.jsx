@@ -7,7 +7,7 @@ import { faCommentAlt, faThumbsUp } from "@fortawesome/free-solid-svg-icons"
 import CommentsList from "../../../CommentsList"
 import CommentForm from "../../../CommentForm"
 
-const InteractionButtons = ({ postId }) => {
+const LikeAndCommentButtons = ({ postId }) => {
   const [likeNumbers, setLikeNumbers] = useState(0)
   const [isPostLiked, setIsPostLiked] = useState(false)
   const [isShown, setIsShown] = useState(false)
@@ -43,7 +43,7 @@ const InteractionButtons = ({ postId }) => {
   useEffect(() => {
     const data = {
       postId,
-      userId: JSON.parse(localStorage.getItem("user")).user_id,
+      userId: JSON.parse(localStorage.getItem("userData")).user_id,
     }
     axios.defaults.headers.post["Content-Type"] = "application/json"
     axios.defaults.timeout = 6000
@@ -139,4 +139,4 @@ const InteractionButtons = ({ postId }) => {
   )
 }
 
-export default InteractionButtons
+export default LikeAndCommentButtons

@@ -1,5 +1,8 @@
+import { Link } from "react-router-dom"
+
 const PostNumber = ({ postNumber }) => {
-  return <p>Ceci est le post n°{postNumber}:</p>
+  const url = "/onepost/" + postNumber
+  return <Link to={url}>Post n°{postNumber}:</Link>
 }
 
 export default PostNumber

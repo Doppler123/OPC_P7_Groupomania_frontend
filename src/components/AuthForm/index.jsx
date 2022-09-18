@@ -65,67 +65,104 @@ function AuthForm() {
       })
   }
 
+  const bearerCookie = document.cookie
+
   return (
     <div>
-      <form className="form" onSubmit={login}>
-        <input
-          type="email"
-          placeholder="Adresse mail"
-          id="login-user_email"
-          name="user_email"
-          onChange={(e) =>
-            setUserLogin({
-              ...userLogin,
-              user_email: e.target.value,
-            })
-          }
-          value={userLogin.user_email}
-        />
-        <input
-          type="password"
-          placeholder="Mot de passe"
-          id="login-user_password"
-          name="user_password"
-          onChange={(e) =>
-            setUserLogin({
-              ...userLogin,
-              user_password: e.target.value,
-            })
-          }
-          value={userLogin.user_password}
-        />
-        <Button name="Connexion" />
-      </form>
-      <p></p>
-      <form className="form" onSubmit={signup}>
-        <input
-          type="email"
-          placeholder="Adresse mail"
-          id="signup-user_email"
-          name="user_email"
-          onChange={(e) =>
-            setUserSignup({
-              ...userSignup,
-              user_email: e.target.value,
-            })
-          }
-          value={userSignup.user_email}
-        />
-        <input
-          type="password"
-          placeholder="Mot de passe"
-          id="signup-user_password"
-          name="user_password"
-          onChange={(e) =>
-            setUserSignup({
-              ...userSignup,
-              user_password: e.target.value,
-            })
-          }
-          value={userSignup.user_password}
-        />
-        <Button name="Inscription" />
-      </form>
+      {bearerCookie ? (
+        <div></div>
+      ) : (
+        <div>
+          <hr />
+          Connectez-vous :
+          <form className="form" onSubmit={login}>
+            <input
+              type="email"
+              placeholder="Adresse mail"
+              id="login-user_email"
+              name="user_email"
+              onChange={(e) =>
+                setUserLogin({
+                  ...userLogin,
+                  user_email: e.target.value,
+                })
+              }
+              value={userLogin.user_email}
+            />
+            <input
+              type="password"
+              placeholder="Mot de passe"
+              id="login-user_password"
+              name="user_password"
+              onChange={(e) =>
+                setUserLogin({
+                  ...userLogin,
+                  user_password: e.target.value,
+                })
+              }
+              value={userLogin.user_password}
+            />
+            <Button name="Connexion" />
+          </form>
+          <hr />
+          Inscrivez-vous:
+          <form className="form" onSubmit={signup}>
+            <input
+              type="email"
+              placeholder="Adresse mail"
+              id="signup-user_email"
+              name="user_email"
+              onChange={(e) =>
+                setUserSignup({
+                  ...userSignup,
+                  user_email: e.target.value,
+                })
+              }
+              value={userSignup.user_email}
+            />
+            <input
+              type="password"
+              placeholder="Mot de passe"
+              id="signup-user_password"
+              name="user_password"
+              onChange={(e) =>
+                setUserSignup({
+                  ...userSignup,
+                  user_password: e.target.value,
+                })
+              }
+              value={userSignup.user_password}
+            />
+            <input
+              type="text"
+              placeholder="Prénom"
+              id="signup-firstName"
+              name="user_firstName"
+              onChange={(e) =>
+                setUserSignup({
+                  ...userSignup,
+                  user_firstName: e.target.value,
+                })
+              }
+              value={userSignup.user_firstName}
+            />
+            <input
+              type="text"
+              placeholder="Nom"
+              id="signup-lastName"
+              name="user_lastName"
+              onChange={(e) =>
+                setUserSignup({
+                  ...userSignup,
+                  user_lastName: e.target.value,
+                })
+              }
+              value={userSignup.user_lastName}
+            />
+            <Button name="Inscription" />
+          </form>
+        </div>
+      )}
     </div>
   )
 }

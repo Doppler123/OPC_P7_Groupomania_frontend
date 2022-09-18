@@ -2,6 +2,8 @@ import React from "react"
 import ReactDOM from "react-dom"
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 
+import "./utils/style/globalStyleSettings.scss"
+
 import Header from "./components/Header"
 import Footer from "./components/Footer"
 import Error from "./components/Error"
@@ -9,6 +11,7 @@ import Error from "./components/Error"
 import Home from "./pages/Home"
 import Authentification from "./pages/Authentification"
 import Feed from "./pages/Feed"
+import OnePost from "./pages/OnePost"
 
 ReactDOM.render(
   <React.StrictMode>
@@ -23,6 +26,9 @@ ReactDOM.render(
         </Route>
         <Route path="/feed">
           <Feed />
+        </Route>
+        <Route path="/onepost/:post_id">
+          <OnePost />
         </Route>
         <Route path="*">
           <Error />
