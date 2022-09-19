@@ -101,7 +101,6 @@ const LikeAndCommentButtons = ({ postId }) => {
 
   return (
     <div>
-      <hr />
       <div>
         <FontAwesomeIcon icon={faThumbsUp} color={"blue"} />
         <p>{likeNumbers}</p>
@@ -134,6 +133,7 @@ const LikeAndCommentButtons = ({ postId }) => {
           )}
         </div>
       </div>
+      <hr />
       <hr />
     </div>
   )

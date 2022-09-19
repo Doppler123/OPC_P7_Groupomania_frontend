@@ -38,13 +38,15 @@ const IndividualPost = ({ post }) => {
           </div>
         </div>
         <Text text={post_text} />
+        {emailFromLocalStorage === user_email ? (
+          <ModifyButton post_id={post_id} />
+        ) : (
+          <div></div>
+        )}
         <Image imageUrl={post_imagePath} imageName={post_imageName} />
 
         {emailFromLocalStorage === user_email ? (
-          <div>
-            <DeleteButton publication_id={post_id} />
-            <ModifyButton publication_id={post_id} />
-          </div>
+          <DeleteButton post_id={post_id} />
         ) : (
           <div></div>
         )}

@@ -36,8 +36,8 @@ const IndividualComment = ({ comment }) => {
         <Text text={comment_text} />
         {userIdFromLocalStorage === parseInt(comment_userId) ? (
           <div>
-            <DeleteButton publication_id={comment_id} />
-            <ModifyButton publication_id={comment_id} />
+            <DeleteButton comment_id={comment_id} />
+            <ModifyButton comment_id={comment_id} />
           </div>
         ) : (
           <div></div>

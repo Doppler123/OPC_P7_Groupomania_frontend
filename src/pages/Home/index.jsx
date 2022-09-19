@@ -6,7 +6,10 @@ function Home() {
   return (
     <div>
       {bearerCookie ? <LogOutButton /> : <div></div>}
-      <h1>Bienvenue sur le réseau social de GROUPOMANIA</h1>
+      <hr />
+      <hr />
+      <h1>Bienvenue sur le réseau social de GROUPOMANIA!</h1>
+      <hr />
       <hr />
       <p>
         Notre nouveau réseau social interne est enfin disponible! Nous espérons
