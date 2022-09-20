@@ -19,6 +19,10 @@ const IndividualComment = ({ comment }) => {
     localStorage.getItem("userData")
   ).user_id
 
+  const emailFromLocalStorage = JSON.parse(
+    localStorage.getItem("userData")
+  ).user_email
+
   return (
     <>
       <div>
@@ -34,11 +38,14 @@ const IndividualComment = ({ comment }) => {
           </div>
         </div>
         <Text text={comment_text} />
+        {userIdFromLocalStorage === parseInt(comment_userId) ||
+        emailFromLocalStorage === "admin@groupomania.com" ? (
+          <DeleteButton comment_id={comment_id} />
+        ) : (
+          <div></div>
+        )}
         {userIdFromLocalStorage === parseInt(comment_userId) ? (
-          <div>
-            <DeleteButton comment_id={comment_id} />
-            <ModifyButton comment_id={comment_id} />
-          </div>
+          <ModifyButton comment_id={comment_id} />
         ) : (
           <div></div>
         )}

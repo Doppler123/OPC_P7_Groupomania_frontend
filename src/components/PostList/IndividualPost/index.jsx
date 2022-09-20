@@ -45,7 +45,8 @@ const IndividualPost = ({ post }) => {
         )}
         <Image imageUrl={post_imagePath} imageName={post_imageName} />
 
-        {emailFromLocalStorage === user_email ? (
+        {emailFromLocalStorage === user_email ||
+        emailFromLocalStorage === "admin@groupomania.com" ? (
           <DeleteButton post_id={post_id} />
         ) : (
           <div></div>

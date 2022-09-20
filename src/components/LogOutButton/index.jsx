@@ -6,11 +6,15 @@ const logOut = () => {
   localStorage.clear()
 }
 
-const data = {
-  userEmail: JSON.parse(localStorage.getItem("userData")).user_email,
-  userFirstName: JSON.parse(localStorage.getItem("userData")).user_firstName,
-  userLastName: JSON.parse(localStorage.getItem("userData")).user_lastName,
-}
+let data = {}
+localStorage.getItem("userData")
+  ? (data = {
+      userEmail: JSON.parse(localStorage.getItem("userData")).user_email,
+      userFirstName: JSON.parse(localStorage.getItem("userData"))
+        .user_firstName,
+      userLastName: JSON.parse(localStorage.getItem("userData")).user_lastName,
+    })
+  : (data = {})
 
 const LogOutButton = () => {
   return (
