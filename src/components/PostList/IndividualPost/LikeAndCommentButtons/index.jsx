@@ -7,6 +7,8 @@ import { faCommentAlt, faThumbsUp } from "@fortawesome/free-solid-svg-icons"
 import CommentsList from "../../../CommentsList"
 import CommentForm from "../../../CommentForm"
 
+import "./likeAndCommentButtons.scss"
+
 const LikeAndCommentButtons = ({ postId }) => {
   const [likeNumbers, setLikeNumbers] = useState(0)
   const [isPostLiked, setIsPostLiked] = useState(false)
@@ -25,8 +27,10 @@ const LikeAndCommentButtons = ({ postId }) => {
       .patch("http://localhost:8000/api/posts/:id/likeInteractions", data)
       .then((response) => {
         console.log(response)
+        document.location.reload()
       })
       .catch((error) => {
+        alert("Une erreur est survenue")
         if (error.response) {
           console.log(error.response.data)
           console.log(error.response.status)
@@ -101,26 +105,30 @@ const LikeAndCommentButtons = ({ postId }) => {
 
   return (
     <div>
-      <div>
-        <FontAwesomeIcon icon={faThumbsUp} color={"blue"} />
-        <p>{likeNumbers}</p>
+      <div id="likeCounter">
+        <FontAwesomeIcon
+          icon={faThumbsUp}
+          color={"blue"}
+          className="thumbIcon"
+        />
+        {likeNumbers}
       </div>
       <div>
-        <button onClick={likeHandle}>
+        <button onClick={likeHandle} className="btn btn-secondary">
           <span>
             <FontAwesomeIcon
               icon={faThumbsUp}
-              color={isPostLiked ? "blue" : "gray"}
+              color={isPostLiked ? "blue" : "white"}
             />
           </span>
           J'aime
         </button>
         <div>
-          <button onClick={commentHandle}>
+          <button onClick={commentHandle} className="btn btn-secondary">
             <span>
               <FontAwesomeIcon
                 icon={faCommentAlt}
-                color={isShown ? "red" : "grey"}
+                color={isShown ? "blue" : "white"}
               />
             </span>
             Commentaires
@@ -133,8 +141,6 @@ const LikeAndCommentButtons = ({ postId }) => {
           )}
         </div>
       </div>
-      <hr />
-      <hr />
     </div>
   )
 }

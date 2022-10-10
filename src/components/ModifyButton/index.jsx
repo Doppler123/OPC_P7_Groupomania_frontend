@@ -41,8 +41,10 @@ const ModifyButton = ({ post_id, comment_id }) => {
 
           .then((response) => {
             console.log(response)
+            document.location.reload()
           })
           .catch((error) => {
+            alert("Une erreur est survenue")
             if (error.response) {
               console.log(error.response.data)
               console.log(error.response.status)
@@ -54,20 +56,22 @@ const ModifyButton = ({ post_id, comment_id }) => {
             }
             console.log(error.config)
           })
-    // document.location.reload()
   }
 
   return (
     <div>
-      <button onClick={modifyHandle}>
+      <button onClick={modifyHandle} className="btn btn-secondary">
         <span>
-          <FontAwesomeIcon icon={faRecycle} color={isShown ? "red" : "grey"} />
+          <FontAwesomeIcon
+            icon={faRecycle}
+            color={isShown ? "blue" : "white"}
+          />
         </span>
-        Modifier votre publication
+        Modifier la publication
       </button>
       {isShown && (
         <div>
-          <form onSubmit={modifyPost}>
+          <form onSubmit={modifyPost} className="form-control">
             <input
               type="text"
               size="50"
@@ -76,6 +80,7 @@ const ModifyButton = ({ post_id, comment_id }) => {
               name="publication_text"
               onChange={onInputChange}
               value={inputValue}
+              className="form-control"
             />
             <Button name="Publier" />
           </form>

@@ -7,6 +7,8 @@ import { faArrowLeft } from "@fortawesome/free-solid-svg-icons"
 import IndividualPost from "../../components/PostList/IndividualPost"
 import LogOutButton from "../../components/LogOutButton"
 
+import "./onePost.scss"
+
 function OnePost() {
   let { post_id } = useParams()
   const [postData, setPostData] = useState([])
@@ -31,7 +33,7 @@ function OnePost() {
         }
         console.log(error.config)
       })
-  }, [])
+  }, [post_id])
 
   const bearerCookie = document.cookie
 
@@ -40,8 +42,14 @@ function OnePost() {
       {bearerCookie ? <LogOutButton /> : <div></div>}
       <hr />
       <Link to="/feed">
-        <FontAwesomeIcon icon={faArrowLeft} color={"gray"} />
-        Revenir à la liste des discussions
+        <div id="linkToPostList">
+          <FontAwesomeIcon
+            icon={faArrowLeft}
+            color={"black"}
+            id="arrowLeftIcon"
+          />
+          Revenir à la liste des discussions
+        </div>
       </Link>
       <hr />
       {postData.map((post) => {

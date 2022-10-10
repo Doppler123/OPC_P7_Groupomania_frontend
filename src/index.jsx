@@ -17,6 +17,7 @@ ReactDOM.render(
   <React.StrictMode>
     <Router>
       <Header />
+      <hr />
       <Switch>
         <Route exact path="/">
           <Home />
@@ -34,6 +35,7 @@ ReactDOM.render(
           <Error />
         </Route>
       </Switch>
+      <hr />
       <Footer />
     </Router>
   </React.StrictMode>,

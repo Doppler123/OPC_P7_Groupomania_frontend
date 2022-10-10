@@ -2,6 +2,8 @@ import { useState } from "react"
 import Button from "../Button"
 import axios from "axios"
 
+import "./postForm.scss"
+
 function PostForm() {
   const [inputValue, setInputValue] = useState("")
   const [imageName, setImageName] = useState("")
@@ -29,8 +31,10 @@ function PostForm() {
       .post("http://localhost:8000/api/posts/", newPost)
       .then((response) => {
         console.log(response)
+        document.location.reload()
       })
       .catch((error) => {
+        alert("Une erreur est survenue")
         if (error.response) {
           console.log(error.response.data)
           console.log(error.response.status)
@@ -42,7 +46,6 @@ function PostForm() {
         }
         console.log(error.config)
       })
-    // document.location.reload()
   }
 
   const imageChoosedOnInput = (e) => {
@@ -50,32 +53,46 @@ function PostForm() {
   }
 
   return (
-    <div>
-      <hr />
-      <p>Publier un nouveau post :</p>
+    <div className="input-group" id="postForm">
       <form
         onSubmit={onFormSubmit}
         method="POST"
         action="/api/posts"
         encType="multipart/form-data"
+        className="form-control"
       >
+        <p>Publier un nouveau post :</p>
         <input
           type="text"
-          size="50"
+          size="100"
           placeholder="Contenu du post"
           id="post_text"
           name="post_text"
           onChange={onInputChange}
           value={inputValue}
+          className="form-control"
         />
         <input
           type="file"
+          accept=".png, .jpg, .jpeg, .webp"
           id="post_imageFile"
           name="post_imageFile"
           onInput={imageChoosedOnInput}
+          className="form-control"
         />
-        <div>{imageName}</div>
-        <Button name="Publier" />
+
+        <div>
+          {imageName ? (
+            <Button name="Publier" />
+          ) : (
+            <div id="noFile">
+              <p>
+                Il faut choisir un fichier image pour pouvoir publier un nouveau
+                post (formats .png, .webp, .jpg ou .jpeg acceptés)!
+              </p>
+            </div>
+          )}
+        </div>
       </form>
       <hr />
     </div>

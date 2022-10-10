@@ -1,10 +1,13 @@
 import axios from "axios"
 
+import "./deleteButton.scss"
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons"
 
 const DeleteButton = ({ post_id, comment_id }) => {
   const deletePost = () => {
+    alert("Etes-vous sûr de vouloir supprimer cette publication?")
     axios.defaults.headers.post["Content-Type"] = "application/json"
     axios.defaults.timeout = 6000
     axios.defaults.withCredentials = true
@@ -16,8 +19,10 @@ const DeleteButton = ({ post_id, comment_id }) => {
 
           .then((response) => {
             console.log(response)
+            document.location.reload()
           })
           .catch((error) => {
+            alert("Une erreur est survenue")
             if (error.response) {
               console.log(error.response.data)
               console.log(error.response.status)
@@ -32,9 +37,9 @@ const DeleteButton = ({ post_id, comment_id }) => {
   }
 
   return (
-    <button onClick={deletePost}>
+    <button onClick={deletePost} className="btn btn-danger" id="deleteButton">
       <span>
-        <FontAwesomeIcon icon={faTrashCan} color={"gray"} />
+        <FontAwesomeIcon icon={faTrashCan} color={"white"} />
       </span>
       Supprimer la publication
     </button>

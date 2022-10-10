@@ -1,7 +1,8 @@
 
   $primary-color: #FD2D01;
   $secondary-color: #FFD7D7;
-  $tertiary-color: #4E5166;
+  $tertiary-color: #82869c;
+  $tertiary-color-real: #4E5166;
   
   @mixin flex-center {
     display: flex;
@@ -18,11 +19,30 @@
   body {
     @include flex-center;
     width: 100%;
-    background: $secondary-color;
+    background: rgb(224, 224, 224);
   }
   
   main {
     @include flex-center;
   }
-  
+
+  button span {
+    margin : 5px;
+  }
+
+  button {
+    margin: 5px 0 5px 0;
+  }
+
+  .form-control{
+    margin-bottom : 10px;
+}
+
+.btn-danger {
+  background-color: $primary-color;
+}
+
+.btn-secondary{
+  background-color: $tertiary-color;
+}
   

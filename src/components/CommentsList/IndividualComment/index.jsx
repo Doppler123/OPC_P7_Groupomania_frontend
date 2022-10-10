@@ -27,8 +27,8 @@ const IndividualComment = ({ comment }) => {
     <>
       <div>
         <hr />
-        <div>
-          <div>
+        <div className="card">
+          <div className="card-header">
             <Author
               author_email={user_email}
               author_firstName={user_firstName}
@@ -37,18 +37,21 @@ const IndividualComment = ({ comment }) => {
             <Time timestamp={comment_time} />
           </div>
         </div>
-        <Text text={comment_text} />
-        {userIdFromLocalStorage === parseInt(comment_userId) ||
-        emailFromLocalStorage === "admin@groupomania.com" ? (
-          <DeleteButton comment_id={comment_id} />
-        ) : (
-          <div></div>
-        )}
-        {userIdFromLocalStorage === parseInt(comment_userId) ? (
-          <ModifyButton comment_id={comment_id} />
-        ) : (
-          <div></div>
-        )}
+        <div className="card-body">
+          <Text text={comment_text} />
+          {userIdFromLocalStorage === parseInt(comment_userId) ||
+          emailFromLocalStorage === "admin@groupomania.com" ? (
+            <DeleteButton comment_id={comment_id} />
+          ) : (
+            <div></div>
+          )}
+          {userIdFromLocalStorage === parseInt(comment_userId) ||
+          emailFromLocalStorage === "admin@groupomania.com" ? (
+            <ModifyButton comment_id={comment_id} />
+          ) : (
+            <div></div>
+          )}
+        </div>
       </div>
     </>
   )

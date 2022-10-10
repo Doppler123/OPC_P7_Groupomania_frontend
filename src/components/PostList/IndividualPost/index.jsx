@@ -7,6 +7,8 @@ import Image from "./Image"
 import PostNumber from "./PostNumber"
 import LikeAndCommentButtons from "./LikeAndCommentButtons"
 
+import "./individualPost.scss"
+
 const IndividualPost = ({ post }) => {
   const {
     post_time,
@@ -25,34 +27,36 @@ const IndividualPost = ({ post }) => {
 
   return (
     <>
-      <div>
-        <div>
+      <div className="card" id="postIndividualCard">
+        <div id="postNumber">
           <PostNumber postNumber={post_id} />
-          <div>
-            <Author
-              author_email={user_email}
-              author_firstName={user_firstName}
-              author_lastName={user_lastName}
-            />
-            <Time timestamp={post_time} />
-          </div>
         </div>
-        <Text text={post_text} />
-        {emailFromLocalStorage === user_email ? (
-          <ModifyButton post_id={post_id} />
-        ) : (
-          <div></div>
-        )}
-        <Image imageUrl={post_imagePath} imageName={post_imageName} />
+        <div className="card-header">
+          <Author
+            author_email={user_email}
+            author_firstName={user_firstName}
+            author_lastName={user_lastName}
+          />
+          <Time timestamp={post_time} />
+        </div>
+        <div className="card-body">
+          <Text text={post_text} />
+          {emailFromLocalStorage === user_email ||
+          emailFromLocalStorage === "admin@groupomania.com" ? (
+            <ModifyButton post_id={post_id} />
+          ) : (
+            <div></div>
+          )}
+          <Image imageUrl={post_imagePath} imageName={post_imageName} />
 
-        {emailFromLocalStorage === user_email ||
-        emailFromLocalStorage === "admin@groupomania.com" ? (
-          <DeleteButton post_id={post_id} />
-        ) : (
-          <div></div>
-        )}
-
-        <LikeAndCommentButtons postId={post_id} />
+          {emailFromLocalStorage === user_email ||
+          emailFromLocalStorage === "admin@groupomania.com" ? (
+            <DeleteButton post_id={post_id} />
+          ) : (
+            <div></div>
+          )}
+          <LikeAndCommentButtons postId={post_id} />
+        </div>
       </div>
     </>
   )

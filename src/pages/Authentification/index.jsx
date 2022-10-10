@@ -6,7 +6,6 @@ function Authentification() {
   return (
     <div>
       <AuthForm />
-      <hr />
       {bearerCookie ? <LogOutButton /> : <div></div>}
     </div>
   )

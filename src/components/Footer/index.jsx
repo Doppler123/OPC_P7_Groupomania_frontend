@@ -2,23 +2,41 @@ import "./footer.scss"
 
 function Footer() {
   return (
-    <div>
-      <footer class="footer">
-        <div class="footer__container">
-          <div class="boxes" id="about">
-            <h4 class="title">A propos</h4>
-            <a class="link">Fonctionnement du site</a>
-            <a class="link">Données et confidentialité</a>
-          </div>
-
-          <div class="boxes" id="assistance">
-            <h4 class="title">Assistance</h4>
-            <a class="link">Contacter l'administrateur</a>
-            <a class="link">Contacter le service technique</a>
-          </div>
+    <footer className="card">
+      <div
+        className="row row-cols-1 row-cols-sm-2 row-cols-md-4 py-6 my-6"
+        id="cardFooter"
+      >
+        <div className="col mb-3" id="iconAndCopyright">
+          <img src="../../images/logos/favicon.png" alt="Logo Groupomania" />
+          <p className="text-muted">© 2022</p>
         </div>
-      </footer>
-    </div>
+
+        <div className="col mb-3">
+          <h5>A propos :</h5>
+          <ul className="nav flex-column">
+            <li className="nav-item mb-2">
+              <p>Fonctionnement du site</p>
+            </li>
+            <li className="nav-item mb-2">
+              <p>Données et confidentialité</p>
+            </li>
+          </ul>
+        </div>
+
+        <div className="col mb-3">
+          <h5 className="card-title">Assistance :</h5>
+          <ul className="nav flex-column">
+            <li className="nav-item mb-2">
+              <p>Contacter l'administrateur</p>
+            </li>
+            <li className="nav-item mb-2">
+              <p>Contacter le service technique</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
   )
 }
 

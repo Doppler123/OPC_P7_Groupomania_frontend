@@ -2,6 +2,8 @@ import PostForm from "../../components/PostForm"
 import PostList from "../../components/PostList"
 import LogOutButton from "../../components/LogOutButton"
 
+import "./feed.scss"
+
 function Feed() {
   const bearerCookie = document.cookie
 
@@ -10,12 +12,18 @@ function Feed() {
       {bearerCookie ? (
         <div>
           <LogOutButton />
+          <hr />
           <PostForm />
-          <p>Voici les derniers posts :</p>
+          <hr />
+          <h2 className="card text-center" id="postListTitle">
+            Voici les derniers posts :
+          </h2>
           <PostList />
         </div>
       ) : (
-        <div>Il faut vous connecter pour pouvoir accéder aux discussions!</div>
+        <div className="card text-center" id="connectionNeeded">
+          Il faut vous connecter pour pouvoir accéder aux discussions!
+        </div>
       )}
     </div>
   )

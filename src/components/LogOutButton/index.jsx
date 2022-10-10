@@ -1,9 +1,12 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faCancel } from "@fortawesome/free-solid-svg-icons"
 
-const logOut = () => {
+import "./logOutButton.scss"
+
+const logOut = async () => {
   document.cookie = "bearerToken=; expires=Thu, 01 Jan 1970 00:00:00 UTC "
   localStorage.clear()
+  document.location.reload()
 }
 
 let data = {}
@@ -18,15 +21,14 @@ localStorage.getItem("userData")
 
 const LogOutButton = () => {
   return (
-    <div>
-      <hr />
+    <div className="card text-center" id="logOut">
       <p>
-        Vous êtes bien connectés en tant que: {data.userFirstName}{" "}
-        {data.userLastName} ({data.userEmail})
+        Vous êtes connecté en tant que: {data.userFirstName} {data.userLastName}{" "}
+        ({data.userEmail})
       </p>
-      <button onClick={logOut}>
+      <button onClick={logOut} className="btn btn-danger">
         <span>
-          <FontAwesomeIcon icon={faCancel} color={"gray"} />
+          <FontAwesomeIcon icon={faCancel} color={"black"} />
         </span>
         Déconnexion
       </button>

@@ -25,8 +25,10 @@ function CommentForm({ postId }) {
       )
       .then((response) => {
         console.log(response)
+        document.location.reload()
       })
       .catch((error) => {
+        alert("Une erreur est survenue")
         if (error.response) {
           console.log(error.response.data)
           console.log(error.response.status)
@@ -38,7 +40,6 @@ function CommentForm({ postId }) {
         }
         console.log(error.config)
       })
-    // document.location.reload()
   }
 
   const onInputChange = (event) => {
@@ -46,10 +47,10 @@ function CommentForm({ postId }) {
   }
 
   return (
-    <div>
+    <div className="input-group">
       <hr />
-      <p>Poster un commentaire :</p>
-      <form onSubmit={onFormSubmit}>
+      <form onSubmit={onFormSubmit} className="form-control">
+        <p>Publier un nouveau commentaire :</p>
         <input
           type="text"
           size="50"
@@ -57,6 +58,7 @@ function CommentForm({ postId }) {
           id="comment_text"
           onChange={onInputChange}
           value={inputValue}
+          className="form-control"
         />
         <Button name="Publier" />
       </form>
